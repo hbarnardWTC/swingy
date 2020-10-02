@@ -1,13 +1,12 @@
 package com.hbarnard.app;
+import  com.hbarnard.app.model.Artefact;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        for(int i = 0; i < 100; i++){
+          new Artefact(1,"weapon");
+        }
     }
 }
