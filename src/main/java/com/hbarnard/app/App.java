@@ -1,12 +1,11 @@
 package com.hbarnard.app;
-import  com.hbarnard.app.model.Artefact;
+
+import com.hbarnard.app.controller.GameController;
 
 public class App 
 {
-    public static void main( String[] args )
+    public static void main(String[] args )
     {
-        for(int i = 0; i < 100; i++){
-          new Artefact(1,"weapon");
-        }
+     GameController game = new GameController();
     }
 }

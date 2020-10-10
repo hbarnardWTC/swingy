@@ -9,10 +9,7 @@ import org.hibernate.validator.constraints.Length;
 public class Hero {
 
 	@NotNull
-	@Min(value = 0, message = "Maxhp cannot be 0 or less")
-	private int maxhp;
-	@NotNull
-	private int currhp;
+	private int hp;
 	@NotNull
 	private int atk;
 	@NotNull
@@ -50,29 +47,81 @@ public class Hero {
 		this.xp = 1000;
 
 		if (job.equalsIgnoreCase("Graveknight")){
-			this.currhp = 12;
-			this.maxhp = 12;
+			this.hp = 12;
 			this.atk = 5;
 			this.def = 8;
 		} else if (job.equalsIgnoreCase("Lich")){
-			this.currhp = 6;
-			this.maxhp = 6;
+			this.hp = 6;
 			this.atk = 12;
 			this.def = 7;
 		} else if (job.equalsIgnoreCase("Vampire")){
-			this.currhp = 9;
-			this.maxhp = 9;
+			this.hp = 9;
 			this.atk = 9;
 			this.def = 7;
 		} else {
-			this.currhp = 5;
-			this.maxhp = 5;
+			this.hp = 5;
 			this.atk = 6;
 			this.def = 5;
 		}
 
-		this.armor = new Artefact(1,"armor");
-		this.helmet = new Artefact(1,"helmet");
-		this.weapon = new Artefact(1,"weapon");
+		this.armor = new Artefact("armor",1);
+		this.helmet = new Artefact("helmet",1);
+		this.weapon = new Artefact("weapon",1);
+	}
+
+	public void addExperience(int xp){
+		this.xp += xp;
+	}
+
+	public Artefact getArmor(){
+		return this.armor;
+	}
+
+	public Artefact getHelmet(){
+		return this.helmet;
+	}
+
+	public Artefact getWeapon(){
+		return this.weapon;
+	}
+
+	public int getAtk(){
+		return (this.atk + this.weapon.getStat());
+	}
+
+	public int getDef(){
+		return (this.def + this.armor.getStat());
+	}
+
+	public int getHealth(){
+		return (this.hp + this.helmet.getStat());
+	}
+
+	public String getName(){
+		return this.getName();
+	}
+
+	public int getXp(){
+		return this.xp;
+	}
+
+	public int getLevel(){
+		return this.level;
+	}
+
+	public void setXp(int xp){
+		this.xp = xp;
+	}
+
+	public void setName(String name){
+		this.name = name;
+	}
+
+	public void setArmor(Artefact armor){
+		this.armor = armor;
+	}
+
+	public void setHelmet(Artefact helmet){
+		this.helmet = helmet;
 	}
 }
