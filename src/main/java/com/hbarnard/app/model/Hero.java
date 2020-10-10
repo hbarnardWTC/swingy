@@ -1,12 +1,16 @@
 package com.hbarnard.app.model;
 
+
+import java.io.Serializable;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-public class Hero {
+public class Hero implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@NotNull
 	private int hp;
@@ -32,13 +36,13 @@ public class Hero {
 	private int xp; 
 
 	@NotNull (message = "Missing weapon on hero")
-	private Artefact weapon;
+	private int weapon;
 
 	@NotNull (message = "Missing armor on hero!")
-	private Artefact armor;
+	private int armor;
 
 	@NotNull (message = "Missing helmet on hero!")
-	private Artefact helmet;
+	private int helmet;
 
 	public Hero(@NotNull @NotEmpty String name, String job){
 		this.name = name;
@@ -64,37 +68,37 @@ public class Hero {
 			this.def = 5;
 		}
 
-		this.armor = new Artefact("armor",1);
-		this.helmet = new Artefact("helmet",1);
-		this.weapon = new Artefact("weapon",1);
+		this.armor = 1;
+		this.helmet = 1;
+		this.weapon = 1;
 	}
 
 	public void addExperience(int xp){
 		this.xp += xp;
 	}
 
-	public Artefact getArmor(){
+	public int getArmor(){
 		return this.armor;
 	}
 
-	public Artefact getHelmet(){
+	public int getHelmet(){
 		return this.helmet;
 	}
 
-	public Artefact getWeapon(){
+	public int getWeapon(){
 		return this.weapon;
 	}
 
 	public int getAtk(){
-		return (this.atk + this.weapon.getStat());
+		return (this.atk + this.weapon);
 	}
 
 	public int getDef(){
-		return (this.def + this.armor.getStat());
+		return (this.def + this.armor);
 	}
 
 	public int getHealth(){
-		return (this.hp + this.helmet.getStat());
+		return (this.hp + this.helmet);
 	}
 
 	public String getName(){
@@ -117,11 +121,14 @@ public class Hero {
 		this.name = name;
 	}
 
-	public void setArmor(Artefact armor){
+	public void setArmor(int armor){
 		this.armor = armor;
 	}
 
-	public void setHelmet(Artefact helmet){
+	public void setHelmet(int helmet){
 		this.helmet = helmet;
+	}
+	public void setWeapon(int weapon){
+		this.weapon = weapon;
 	}
 }
