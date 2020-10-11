@@ -3,6 +3,7 @@ package com.hbarnard.app.model;
 
 import java.io.Serializable;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -44,12 +45,22 @@ public class Hero implements Serializable{
 	@NotNull (message = "Missing helmet on hero!")
 	private int helmet;
 
-	public Hero(@NotNull @NotEmpty String name, String job){
+	private int x = 1;
+
+	private int y = 1;
+
+	public Hero(@NotBlank String name){
 		this.name = name;
-		this.job = job;
 		this.level = 1;
 		this.xp = 1000;
+		this.armor = 1;
+		this.helmet = 1;
+		this.weapon = 1;
+	}
 
+
+	public void setJob(@NotBlank String job){
+		this.job = job;
 		if (job.equalsIgnoreCase("Graveknight")){
 			this.hp = 12;
 			this.atk = 5;
@@ -66,15 +77,22 @@ public class Hero implements Serializable{
 			this.hp = 5;
 			this.atk = 6;
 			this.def = 5;
+			this.job = "skeleton";
 		}
-
-		this.armor = 1;
-		this.helmet = 1;
-		this.weapon = 1;
 	}
 
 	public void addExperience(int xp){
 		this.xp += xp;
+		while(this.xp >= (this.level * 1000 + Math.pow((this.level - 1), 2) * 450)){
+			this.levelUp();
+		}
+	}
+
+	private void levelUp(){
+		this.level++;
+		this.atk++;
+		this.def++;
+		this.hp++;
 	}
 
 	public int getArmor(){
@@ -83,6 +101,14 @@ public class Hero implements Serializable{
 
 	public int getHelmet(){
 		return this.helmet;
+	}
+
+	public int getX(){
+		return this.x;
+	}
+
+	public int getY(){
+		return this.y;
 	}
 
 	public int getWeapon(){
@@ -130,5 +156,13 @@ public class Hero implements Serializable{
 	}
 	public void setWeapon(int weapon){
 		this.weapon = weapon;
+	}
+
+	public void setX(int x){
+		this.x = x;
+	}
+
+	public void setY(int y){
+		this.y = y;
 	}
 }
