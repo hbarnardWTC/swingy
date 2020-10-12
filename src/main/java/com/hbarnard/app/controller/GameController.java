@@ -91,6 +91,7 @@ public class GameController {
 		String name = scanner.nextLine();
 		while (name.equals("")) {
 			Display.namingError();
+			name = scanner.nextLine();
 		}
 		this.hero.setName(name);
 	}
@@ -116,17 +117,9 @@ public class GameController {
 
 	public void runGame(){
 		this.createMap();
-		Display.errorMessage("Mapsize:" + Integer.toString(this.mapsize));
-		Display.errorMessage("Mapsize 2:" + Integer.toString(this.hero.getMap()));
-		Display.errorMessage("X:" + Integer.toString(this.hero.getX()));
-		Display.errorMessage("Y:" + Integer.toString(this.hero.getY()));
 		if (this.hero.getX() <= 0  || this.hero.getY() <= 0) {
-			Display.errorMessage("Mapsize:" + Integer.toString(this.mapsize));
-			Display.errorMessage("Mapsize 2:" + Integer.toString(this.hero.getMap()));
 			this.hero.setX(this.mapsize/2);
 			this.hero.setY(this.mapsize/2);
-			Display.errorMessage("X:" + Integer.toString(this.hero.getX()));
-			Display.errorMessage("Y:" + Integer.toString(this.hero.getY()));
 		}
 		Display.print(this.hero.toString());
 

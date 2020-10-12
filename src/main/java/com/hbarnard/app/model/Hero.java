@@ -1,6 +1,5 @@
 package com.hbarnard.app.model;
 
-
 import java.io.Serializable;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
