@@ -9,24 +9,25 @@ public class Enemy {
 
 	private String type;
 
-	public Enemy(int level, String type){
+	public Enemy(int level, int type){
 		this.level = level;
-		this.type = type;
-		switch (type.toLowerCase()){
-			case "paladin" :
+		switch (type){
+			case 1 :
 				this.hp = 5 + level;
 				this.def = 5 + level;
 				this.atk = 3 + level;
+				this.type = "Paladin";
 				break;
-			case "cleric" :
+			case 2 :
 				this.hp = 6 + level;
 				this.def = 3 + level;
 				this.atk = 2 + level;
-				break;
-			case "oracle" :
+				this.type = "Cleric";
+			case 3 :
 				this.hp = 4 + level;
 				this.def = 2 + level;
 				this.atk = 5 + level;
+				this.type = "Oracle";
 				break;
 			default:
 				this.type = "Peasant";

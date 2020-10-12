@@ -1,6 +1,7 @@
 package com.hbarnard.app;
 
 import com.hbarnard.app.controller.GameController;
+import com.hbarnard.app.views.Display;
 
 public class App 
 {
@@ -14,6 +15,11 @@ public class App
       if(args[0].toLowerCase().equals("console")){
         GameController game = new GameController();
         game.startGame();
+        game.runGame();
+      }
+
+      if(args[0].toLowerCase().equals("gui")){
+        Display.errorMessage("This version is not available yet!");
       }
     }
 }

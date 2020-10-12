@@ -3,11 +3,8 @@ package com.hbarnard.app.model;
 
 import java.io.Serializable;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.Size;
 
 public class Hero implements Serializable{
 
@@ -21,11 +18,10 @@ public class Hero implements Serializable{
 	private int def;
 
 	@NotNull(message = "Job cannot be null")
-	@NotEmpty(message = "Job cannot be empty")
 	private String job;
 
 	@NotNull(message = "Name cannot be null")
-	@Length(min = 3, max = 15, message = "Name must be between 3 and 15 letters long")
+	@Size(min = 3, max = 15, message = "Name must be between 3 and 15 letters long")
 	private String name;
 
 	@NotNull(message = "Level cannot be null")
@@ -45,21 +41,22 @@ public class Hero implements Serializable{
 	@NotNull (message = "Missing helmet on hero!")
 	private int helmet;
 
-	private int x = 1;
+	private int x = 0;
 
-	private int y = 1;
+	private int y = 0;
 
-	public Hero(@NotBlank String name){
+	private int map = 0;
+
+	public Hero(@NotNull String name){
 		this.name = name;
 		this.level = 1;
-		this.xp = 1000;
+		this.xp = 0;
 		this.armor = 1;
 		this.helmet = 1;
 		this.weapon = 1;
 	}
 
-
-	public void setJob(@NotBlank String job){
+	public void setJob(@NotNull String job){
 		this.job = job;
 		if (job.equalsIgnoreCase("Graveknight")){
 			this.hp = 12;
@@ -128,7 +125,7 @@ public class Hero implements Serializable{
 	}
 
 	public String getName(){
-		return this.getName();
+		return this.name;
 	}
 
 	public int getXp(){
@@ -137,6 +134,10 @@ public class Hero implements Serializable{
 
 	public int getLevel(){
 		return this.level;
+	}
+
+	public int getMap(){
+		return this.map;
 	}
 
 	public void setXp(int xp){
@@ -164,5 +165,22 @@ public class Hero implements Serializable{
 
 	public void setY(int y){
 		this.y = y;
+	}
+
+	public void setMap(int map){
+		this.map = map;
+	}
+
+	public String toString(){
+		return ("Hero name: " + this.name +
+				"\nHero job: " + this.job +
+				"\nHero level: " + Integer.toString(this.level) + 
+				"\nSize of map: " + Integer.toString(this.map) + 
+				"\nHero attack: " + Integer.toString(this.atk) +
+				"\nHero defence: " + Integer.toString(this.def) +
+				"\nHero health: " + Integer.toString(this.hp) +
+				"\nHero weapon: " + Integer.toString(this.weapon) +
+				"\nHero armor: " + Integer.toString(this.armor) +
+				"\nHero helmet: " + Integer.toString(this.helmet));
 	}
 }
